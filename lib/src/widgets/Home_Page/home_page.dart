@@ -1,6 +1,11 @@
+import 'package:amazon_clone/src/widgets/Home_Page/product_category1.dart';
+import 'package:amazon_clone/src/widgets/Home_Page/product_category2.dart';
+import 'package:amazon_clone/src/widgets/Home_Page/see_all_deals.dart';
 import 'package:flutter/material.dart';
 import '../../models/global.dart';
 import 'top_search_bar.dart';
+import '../../models/product.dart';
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -89,15 +94,56 @@ class HomePage extends StatelessWidget {
               },
             ),
             Divider(),
-            ListTile(title: Text("Settings" , style: drawerStyle,), onTap: (){Navigator.pop(context);},trailing: Icon(Icons.keyboard_arrow_right),),// ListTile(
-            ListTile(title: Text("Customer Service" , style: drawerStyle,), onTap: (){Navigator.pop(context);},),// ListTile(
-            
+            ListTile(
+              title: Text(
+                "Settings",
+                style: drawerStyle,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+              trailing: Icon(Icons.keyboard_arrow_right),
+            ), // ListTile(
+            ListTile(
+              title: Text(
+                "Customer Service",
+                style: drawerStyle,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ), // ListTile(
           ],
         ),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           TopSearchBar(),
+          Padding(padding: EdgeInsets.all(10), child: ProductCategory1()),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text("Popular Deals",style: productTitleStyle,),
+          ),
+          for (Product product in productsListCategory2)
+            ProductCategory2(
+                image: product.image,
+                name: product.name,
+                price: product.price,
+              ),
+        SeeAllDeals(),
+          
+          // ListView.builder(
+          //   shrinkWrap: true,
+          //   itemCount: productsListCategory2.length,
+          //   itemBuilder: (context, int index) {
+          //     Product product = productsListCategory2[index];
+          //     return ProductCategory2(
+          //       image: product.image,
+          //       name: product.name,
+          //       price: product.price,
+          //     );
+          //   },
+          // ),
         ],
       ),
     );
