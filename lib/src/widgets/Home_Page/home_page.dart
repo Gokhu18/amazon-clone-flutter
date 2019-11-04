@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/global.dart';
-
+import 'top_search_bar.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -96,7 +96,9 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          TopSearchBar(),
+        ],
       ),
     );
   }
